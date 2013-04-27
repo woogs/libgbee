@@ -8,5 +8,7 @@ http://sourceforge.net/projects/libgbee/
 This fork adds compability with C++ compilers and makes the library
 compatible with the latest changes in the XBee protocol
 
+It also uses the 'ip' command instead of 'ifconfig' for interface setup.
+
 To build the library the CMake build system is being used. Check the
 doxygen documentation for detailled instructions.

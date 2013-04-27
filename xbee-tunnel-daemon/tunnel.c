@@ -111,7 +111,7 @@ Tunnel *tunnelInit(const char *serialDevice, const char* inetAddr)
 	}
 
 	/* Configure the network interface. */
-	sprintf(shellCommand, "ifconfig tun0 inet %s netmask 255.255.0.0", inetAddr);
+	sprintf(shellCommand, "ip addr add %s/16 dev tun0", inetAddr);
 	system(shellCommand);
 
 	/* Create the semaphore for getting transmission status. */
