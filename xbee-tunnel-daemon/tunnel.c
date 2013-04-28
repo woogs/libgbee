@@ -169,6 +169,8 @@ bool tunnelInetSend(Tunnel *self, GBeeRxPacket16 *rxPacket, uint16_t rxPacketLen
 
 	/* Encode the IP packet. */
 	gbeeInetEncode(self->inetAddr, rxPacket, rxPacketLength, ipHeader);
+	syslog(LOG_DEBUG, "Packet source %d.%d.%d.%d and destination is %d.%d.%d.%d", (ipHeader->sourceAddress>>24)&0x000000FF, (ipHeader->sourceAddress>>16)&0x0000FF, (ipHeader->sourceAddress>>8)&0x00FF, ipHeader->sourceAddress&0xFF,
+		(ipHeader->destAddress>>24)&0x000000FF, (ipHeader->destAddress>>16)&0x0000FF, (ipHeader->destAddress>>8)&0x00FF, ipHeader->destAddress&0xFF);
 
 	/* Forward the packet data to the TUN device. */
 	ssize_t result = write(self->tunDevice, ipHeader, ntohs(ipHeader->totalLength));
